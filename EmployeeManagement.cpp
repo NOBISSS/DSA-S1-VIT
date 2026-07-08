@@ -16,6 +16,7 @@
 */
 #include<iostream>
 using namespace std;
+//all constants are declared here
 #define MAX_EMP_SIZE 5
 #define MAX_EMP_NAME_SIZE 10
 #define YOE_INCREMENT_5000 5
