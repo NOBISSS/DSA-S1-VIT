@@ -53,7 +53,7 @@ void insertBeforeNode(int dsno,const char dsname[],int dmarks[]){
     cin>>val;
     newNode=createNode(dsno,dsname,dmarks);
     ptr=head;
-    while(ptr!=NULL){
+    while(ptr!=NULL && ptr->next!=NULL){
         if(ptr->next->sno==val){
             newNode->next=ptr->next;
             ptr->next=newNode;
@@ -102,7 +102,7 @@ int main(){
     insertAtFirst(4,"PARTH",arr);
     insertAtEnd(1,"PARTH",arr);
     //insertBeforeNode(2,"DEV",arr);
-    insertAfterNode(10,"DEV",arr);
+    insertBeforeNode(10,"DEV",arr);
     display();
     return 0;
 }
