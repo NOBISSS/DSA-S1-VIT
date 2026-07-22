@@ -1,86 +1,116 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int arr[5];
-int display();
-static int arr_filled_size=0;
-int insert(){
-    if(arr_filled_size>=5){
-        cout<<"Array Sized Full,Delete Element for adding another elem";
-        return 0;
+const int MAX_SIZE = 5;
+
+int arr[MAX_SIZE];
+int arr_filled_size = 0;
+
+void display()
+{
+    if (arr_filled_size == 0)
+    {
+        cout << "No elements to display.\n";
+        return;
     }
-    int no;
-    cout<<"Enter Value";
-    cin>>no;
-    arr[arr_filled_size++]=no;
-    display();
-    return 0;
+
+    cout << "Displaying Elements:\n";
+
+    for (int i = 0; i < arr_filled_size; i++)
+        cout << arr[i] << " ";
+
+    cout << endl;
 }
 
-int deleteElem(){
-    int flag=0;
-    int no,i;
-    if(arr_filled_size==0){
-        cout<<"Nothing has to be deleted";
-        return 0;
+void insert()
+{
+    if (arr_filled_size == MAX_SIZE)
+    {
+        cout << "Array is full. Delete an element before inserting.\n";
+        return;
     }
-    cout<<"Enter Value";
-    cin>>no;
-    for(i=0;i<arr_filled_size;i++){
-        
-        if(arr[i]==no){
-            flag=1;
-            for(int j=i;j<arr_filled_size-1;j++){
-                arr[j]=arr[j+1];
-            }
+
+    int no;
+
+    cout << "Enter Value: ";
+    cin >> no;
+
+    arr[arr_filled_size++] = no;
+
+    display();
+}
+
+void deleteElem()
+{
+    if (arr_filled_size == 0)
+    {
+        cout << "Array is empty.\n";
+        return;
+    }
+
+    int no;
+    bool found = false;
+
+    cout << "Enter Value to Delete: ";
+    cin >> no;
+
+    for (int i = 0; i < arr_filled_size; i++)
+    {
+        if (arr[i] == no)
+        {
+            found = true;
+
+            for (int j = i; j < arr_filled_size - 1; j++)
+                arr[j] = arr[j + 1];
+
             arr_filled_size--;
             break;
         }
     }
 
-    if(flag==0){
-        cout<<"The Element doesn't found please try with different value"<<endl;
-    }
+    if (!found)
+        cout << "Element not found.\n";
+
     display();
-    return 0;
 }
 
-int display(){
-    if(arr_filled_size==0){
-        cout<<"No Element Found to be display"<<endl;
-        return 0;
-    }
-    cout<<"DISPLAYING ELEMENTS"<<endl;
-    for(int i=0;i<arr_filled_size;i++){
-        cout<<arr[i]<<" ";
-    }
-    cout<<endl;
-    return 0;
-}
+int main()
+{
+    int choice;
 
-int main(){
-    int choice=1;
-    while(choice<=3 && choice>=1){
-        cout<<"1.INSERTION"<<endl;
-        cout<<"2.DELETION"<<endl;
-        cout<<"3.DISPLAY"<<endl;
-        cout<<"4.EXIT"<<endl;
-        cout<<"Enter Your Choice";
-        cin>>choice;
+    do
+    {
+        cout << "\n1. INSERT\n";
+        cout << "2. DELETE\n";
+        cout << "3. DISPLAY\n";
+        cout << "4. EXIT\n";
 
-        switch(choice){
-            case 1:insert();
-                    break;
-            case 2:deleteElem();
-                    break;
-            case 3:display();
-                    break;
+        cout << "Enter Your Choice: ";
+        cin >> choice;
 
-            default:cout<<"Exited From the Program,Thank You!!";
+        switch (choice)
+        {
+            case 1:
+                insert();
+                break;
+
+            case 2:
+                deleteElem();
+                break;
+
+            case 3:
+                display();
+                break;
+
+            case 4:
+                cout << "Exited Successfully.\n";
+                break;
+
+            default:
+                cout << "Invalid Choice.\n";
         }
-    }
-    
+
+    } while (choice != 4);
 
     return 0;
-
 }

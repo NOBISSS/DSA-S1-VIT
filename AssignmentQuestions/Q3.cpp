@@ -1,27 +1,41 @@
-//COLUMN WISE ROTATION
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-const int MAX_SIZE=3;
-int main(){
-    int no=1;
-    int arr[3][3]={{1,2,3},{4,5,6},{7,8,9}};
-    int rotation_cnt=2;
-        for(int i=0;i<MAX_SIZE;i++){
-            for(int j=0;j<rotation_cnt;j++){
-                int temp=arr[MAX_SIZE-1][i];
-                for(int k=MAX_SIZE-1;k>0;k--){
-                    arr[k][i]=arr[k-1][i];
-                }
-                arr[0][i]=temp;
-            }
-        }
-        for(int i=0;i<MAX_SIZE;i++){
-            for(int j=0;j<MAX_SIZE;j++){
-                cout<<arr[i][j]<<" ";
-            }
-            cout<<endl;
-        }
-    return 0;
+const int MAX_SIZE = 3;
 
+int main()
+{
+    int arr[MAX_SIZE][MAX_SIZE] =
+    {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    int rotation_cnt = 2;
+
+    for (int col = 0; col < MAX_SIZE; col++)
+    {
+        for (int r = 0; r < rotation_cnt; r++)
+        {
+            int temp = arr[MAX_SIZE - 1][col];
+
+            for (int row = MAX_SIZE - 1; row > 0; row--)
+                arr[row][col] = arr[row - 1][col];
+
+            arr[0][col] = temp;
+        }
+    }
+
+    cout << "Matrix after column-wise rotation:\n";
+
+    for (int i = 0; i < MAX_SIZE; i++)
+    {
+        for (int j = 0; j < MAX_SIZE; j++)
+            cout << arr[i][j] << " ";
+
+        cout << endl;
+    }
+
+    return 0;
 }
