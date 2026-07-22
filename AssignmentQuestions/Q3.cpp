@@ -27,7 +27,7 @@ int main()
         }
     }
 
-    cout << "Matrix after column-wise rotation:\n";
+    cout << "Matrix after "<<rotation_cnt<<" column-wise rotation:\n";
 
     for (int i = 0; i < MAX_SIZE; i++)
     {
