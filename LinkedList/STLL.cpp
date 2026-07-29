@@ -6,7 +6,7 @@ using namespace std;
 struct node{
     struct node *prev=NULL;
     int data;
-    string ch[10];
+    string* ch;
     struct node *next=NULL;
 }*head=NULL,*tail=NULL,*newNode=NULL,*ptr=NULL,*temp=NULL;
 
@@ -16,10 +16,11 @@ struct node *createNode(){
     cin>>val;
     newNode=(struct node*)malloc(sizeof(struct node));
     newNode->data=val;
+    newNode->ch=new string[val];
     newNode->prev=NULL;
     newNode->next=NULL;
     for(int i=0;i<val;i++){
-        newNode->ch[i]=(65+i);
+        newNode->ch[i]=string(1,'A'+i);
     }
     return newNode;
 }
@@ -80,6 +81,7 @@ void deleteAtBegin(){
         head=head->next;
         head->prev=NULL;
         temp->next=NULL;
+        delete[] temp->ch;
         free(temp);
     }
 }
