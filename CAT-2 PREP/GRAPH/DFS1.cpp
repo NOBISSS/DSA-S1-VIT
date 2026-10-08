@@ -19,7 +19,6 @@ public:
         l[v].push_back(u);
     }
 
-    //DFS Traversal
     void dfsHelper(int u,vector<bool> &vis){
         cout<<u<<" ";
         vis[u]=true;
@@ -34,6 +33,7 @@ public:
         int src=0;
         vector<bool> vis(V,false);
         dfsHelper(src,vis);
+        cout<<endl;
     }
 };
 
@@ -45,4 +45,5 @@ int main(){
     g.addEdge(2,4);
     g.dfs();
     return 0;
+
 }
